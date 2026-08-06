@@ -165,20 +165,6 @@ docker compose up -d postgres redis
 
 ---
 
-## Environment Variables
-
-见 [.env.example](.env.example)。**切勿将 `.env` 提交到 Git**（已在 `.gitignore`）。
-
-| Variable | Description |
-|----------|-------------|
-| `GSC_CLIENT_ID` / `GSC_CLIENT_SECRET` | Google OAuth |
-| `GSC_REDIRECT_URI` | 生产环境指向 `https://<seo-api>/api/auth/gsc/callback` |
-| `FRONTEND_URL` | 生产环境前端 URL（OAuth 回跳） |
-| `VITE_API_BASE_URL` | 前端构建时 API 根路径（Render **seo-web**） |
-| `BING_API_KEY` | Bing Webmaster API |
-| `LLM_BASE_URL` / `LLM_API_KEY` / `LLM_MODEL` | 通义千问或 OpenAI 兼容端点 |
-
----
 
 ## License
 
