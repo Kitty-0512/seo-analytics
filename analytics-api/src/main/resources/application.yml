@@ -1,0 +1,61 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: seo-analytics
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/seo_analytics}
+    username: ${SPRING_DATASOURCE_USERNAME:seo}
+    password: ${SPRING_DATASOURCE_PASSWORD:seo123456}
+    driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      # On Render, entrypoint sets SPRING_DATA_REDIS_URL from REDIS_URL (takes precedence)
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: ${SPRING_DATA_REDIS_PASSWORD:redis123456}
+      timeout: 3000ms
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+  type-enums-package: com.example.seoanalytics.entity
+  type-handlers-package: com.example.seoanalytics.config
+
+# External service placeholders
+ai:
+  service:
+    url: ${AI_SERVICE_URL:http://localhost:5001}
+
+gsc:
+  client-id: ${GSC_CLIENT_ID:}
+  client-secret: ${GSC_CLIENT_SECRET:}
+  redirect-uri: ${GSC_REDIRECT_URI:http://localhost:8080/api/v1/auth/gsc/callback}
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost}
+  sync:
+    enabled: ${SYNC_ENABLED:true}
+    cron: ${SYNC_CRON:0 0 2 * * *}
+    lookback-days: ${SYNC_LOOKBACK_DAYS:3}
+
+bing:
+  api-key: ${BING_API_KEY:}
+
+llm:
+  base-url: ${LLM_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+  api-key: ${LLM_API_KEY:}
+  model: ${LLM_MODEL:qwen-plus}
+
+logging:
+  level:
+    com.example.seoanalytics: INFO

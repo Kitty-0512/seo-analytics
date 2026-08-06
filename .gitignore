@@ -1,0 +1,26 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+
+# Node
+node_modules/
+dist/
+.DS_Store
+*.local
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+
+# Env secrets
+.env
+*.log
+
+# Separate blog repo (GitHub Pages) — do not nest
+blog/
