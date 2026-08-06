@@ -6,6 +6,12 @@ if [ -n "${DATABASE_URL:-}" ]; then
   JDBC_URL=$(printf '%s' "$DATABASE_URL" \
     | sed -e 's|^postgres://|jdbc:postgresql://|' \
           -e 's|^postgresql://|jdbc:postgresql://|')
+  # Render Postgres requires SSL for JDBC
+  case "$JDBC_URL" in
+    *sslmode=*) ;;
+    *\?*) JDBC_URL="${JDBC_URL}&sslmode=require" ;;
+    *) JDBC_URL="${JDBC_URL}?sslmode=require" ;;
+  esac
   export SPRING_DATASOURCE_URL="$JDBC_URL"
 fi
 
