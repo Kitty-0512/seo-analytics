@@ -88,10 +88,10 @@ services:
       - key: JAVA_OPTS
         value: "-Xms128m -Xmx384m"
 
+  # Static sites have no plan field (always free on Render)
   - type: web
     name: seo-web
     runtime: static
-    plan: free
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     rootDir: analytics-web
